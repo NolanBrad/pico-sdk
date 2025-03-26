@@ -85,6 +85,7 @@ http_archive(
 )
 
 new_git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
+new_local_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:local.bzl", "new_local_repository")
 
 # TODO: Provide tinyusb as a proper Bazel module.
 new_git_repository(
@@ -111,12 +112,18 @@ new_git_repository(
 )
 
 # TODO: Provide lwip as a proper Bazel module.
-new_git_repository(
+new_local_repository(
     name = "lwip",
+    path = "../pico-sdk/lib/lwip",
     build_file = "//src/rp2_common/pico_lwip:lwip.BUILD",
-    commit = "0a0452b2c39bdd91e252aef045c115f88f6ca773",  # keep-in-sync-with-submodule: lib/lwip
-    remote = "https://github.com/lwip-tcpip/lwip.git",
 )
+
+#new_git_repository(
+#    name = "lwip",
+#    build_file = "//src/rp2_common/pico_lwip:lwip.BUILD",
+#    commit = "0a0452b2c39bdd91e252aef045c115f88f6ca773",  # keep-in-sync-with-submodule: lib/lwip
+#    remote = "https://github.com/lwip-tcpip/lwip.git",
+#)
 
 register_toolchains(
     "//bazel/toolchain:linux-aarch64-rp2040",
