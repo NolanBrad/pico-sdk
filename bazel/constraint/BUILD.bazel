@@ -242,6 +242,12 @@ label_flag_matches(
 )
 
 label_flag_matches(
+    name = "pico_sntp_config_unset",
+    flag = "//bazel/config:PICO_SNTP_CONFIG",
+    value = "//bazel:empty_cc_lib",
+)
+
+label_flag_matches(
     name = "pico_btstack_config_unset",
     flag = "//bazel/config:PICO_BTSTACK_CONFIG",
     value = "//bazel:empty_cc_lib",

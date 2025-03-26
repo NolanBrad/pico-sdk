@@ -111,10 +111,29 @@ cc_library(
     deps = [":pico_lwip_core"],
 )
 
+alias(
+    name = "pico_sntp_custom",
+    actual = select({
+        "@pico-sdk//bazel/constraint:pico_sntp_config_unset": ":sntp_config_custom_dummy",
+        "//conditions:default": "@pico-sdk//bazel/config:PICO_SNTP_CONFIG",
+    })
+)
+
+cc_library(
+    name = "sntp_config_custom_dummy",
+    hdrs = ["src/include/lwip/apps/sntp_opts_custom.h"],
+    includes = ["src/include/lwip/apps", "src/include",],
+    deps = [":pico_lwip_headers"],
+    alwayslink = 1,
+)
+
 cc_library(
     name = "pico_lwip_sntp",
     srcs = ["src/apps/sntp/sntp.c"],
-    deps = [":pico_lwip_core"],
+    deps = [
+        ":pico_lwip_core",
+        ":pico_sntp_custom",
+    ],
 )
 
 cc_library(

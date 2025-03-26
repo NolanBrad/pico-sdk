@@ -283,6 +283,12 @@ label_flag(
     build_setting_default = "//bazel:empty_cc_lib",
 )
 
+# PICO_BAZEL_CONFIG: PICO_SNTP_CONFIG, [Bazel only] The cc_library that provides sntp_opts.h, default=//bazel:empty_cc_lib, group=wireless
+label_flag(
+    name = "PICO_SNTP_CONFIG",
+    build_setting_default = "//bazel:empty_cc_lib",
+)
+
 # PICO_BAZEL_CONFIG: PICO_FREERTOS_LIB, [Bazel only] The cc_library that provides FreeRTOS, default=//bazel:empty_cc_lib, group=wireless
 label_flag(
     name = "PICO_FREERTOS_LIB",
