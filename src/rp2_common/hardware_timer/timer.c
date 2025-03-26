@@ -254,6 +254,9 @@ bool timer_hardware_alarm_set_target(timer_hw_t *timer, uint alarm_num, absolute
                     // and clear our flag so that if the IRQ handler is already active (because it is on
                     // the other core) it will also skip doing anything
                     timer_callbacks_pending[timer_num] = old_timer_callbacks_pending;
+                } else {
+                    // HACK: Force the interrupt to happen
+                    irq_set_pending(timer_hardware_alarm_get_irq_num(timer, alarm_num));
                 }
             }
         }
