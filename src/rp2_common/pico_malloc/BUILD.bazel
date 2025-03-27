@@ -1,6 +1,25 @@
 load("//bazel:defs.bzl", "compatible_with_rp2")
+load("//bazel/util:sdk_define.bzl", "pico_sdk_define")
 
 package(default_visibility = ["//visibility:public"])
+
+pico_sdk_define(
+    name = "LIB_PICO_MALLOC_PANIC",
+    define_name = "PICO_MALLOC_PANIC",
+    from_flag = "//bazel/config:PICO_MALLOC_PANIC",
+)
+
+pico_sdk_define(
+    name = "LIB_PICO_DEBUG_MALLOC",
+    define_name = "PICO_DEBUG_MALLOC",
+    from_flag = "//bazel/config:PICO_DEBUG_MALLOC",
+)
+
+pico_sdk_define(
+    name = "LIB_PICO_DEBUG_MALLOC_LOW_WATER",
+    define_name = "PICO_DEBUG_MALLOC_LOW_WATER",
+    from_flag = "//bazel/config:PICO_DEBUG_MALLOC_LOW_WATER",
+)
 
 cc_library(
     name = "pico_malloc",
@@ -15,6 +34,9 @@ cc_library(
     ],
     target_compatible_with = compatible_with_rp2(),
     deps = [
+        ":LIB_PICO_MALLOC_PANIC",
+        ":LIB_PICO_DEBUG_MALLOC",
+        ":LIB_PICO_DEBUG_MALLOC_LOW_WATER",
         "//src/common/pico_sync",
         "//src/rp2_common:pico_platform",
         "//src/rp2_common/pico_multicore",

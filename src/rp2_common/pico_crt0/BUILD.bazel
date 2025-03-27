@@ -1,6 +1,19 @@
 load("//bazel:defs.bzl", "compatible_with_rp2")
+load("//bazel/util:sdk_define.bzl", "pico_sdk_define")
 
 package(default_visibility = ["//visibility:public"])
+
+pico_sdk_define(
+    name = "LIB_PICO_STACK_SIZE",
+    define_name = "PICO_STACK_SIZE",
+    from_flag = "//bazel/config:PICO_STACK_SIZE",
+)
+
+pico_sdk_define(
+    name = "LIB_PICO_HEAP_SIZE",
+    define_name = "PICO_HEAP_SIZE",
+    from_flag = "//bazel/config:PICO_HEAP_SIZE",
+)
 
 alias(
     name = "default_linker_script",
@@ -55,6 +68,8 @@ cc_library(
     ],
     target_compatible_with = compatible_with_rp2(),
     deps = [
+        ":LIB_PICO_STACK_SIZE",
+        ":LIB_PICO_HEAP_SIZE",
         "//src/common/boot_picobin_headers",
         "//src/common/pico_base_headers",
         "//src/rp2_common:hardware_regs",

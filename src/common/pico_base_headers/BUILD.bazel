@@ -1,6 +1,13 @@
 load("@bazel_skylib//rules:run_binary.bzl", "run_binary")
+load("//bazel/util:sdk_define.bzl", "pico_sdk_define")
 
 package(default_visibility = ["//visibility:public"])
+
+pico_sdk_define(
+    name = "LIB_PARAM_ASSERTIONS_ENABLE_ALL",
+    define_name = "PARAM_ASSERTIONS_ENABLE_ALL",
+    from_flag = "//bazel/config:PARAM_ASSERTIONS_ENABLE_ALL",
+)
 
 # PICO_BAZEL_CONFIG: PICO_SDK_VERSION_STRING, SDK version string, type=string, default=Current SDK version string, group=pico_base
 PICO_SDK_VERSION_STRING = module_version() if module_version() != None else "0.0.1-WORKSPACE"
@@ -119,6 +126,7 @@ cc_library(
         "@picotool//:__subpackages__",
     ],
     deps = [
+        ":LIB_PARAM_ASSERTIONS_ENABLE_ALL",
         ":common_sdk_defines",
         ":version",
         "//bazel/config:PICO_CONFIG_HEADER",

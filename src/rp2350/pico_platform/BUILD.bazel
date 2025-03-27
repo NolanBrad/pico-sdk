@@ -1,8 +1,22 @@
+load("//bazel/util:sdk_define.bzl", "pico_sdk_define")
+
 package(
     default_visibility = [
         "//src/rp2350:__subpackages__",
         "//src/rp2_common:__pkg__",
     ],
+)
+
+pico_sdk_define(
+    name = "LIB_PICO_USE_STACK_GUARDS",
+    define_name = "PICO_USE_STACK_GUARDS",
+    from_flag = "//bazel/config:PICO_USE_STACK_GUARDS",
+)
+
+pico_sdk_define(
+    name = "LIB_PICO_STACK_SIZE",
+    define_name = "PICO_STACK_SIZE",
+    from_flag = "//bazel/config:PICO_STACK_SIZE",
 )
 
 cc_library(
@@ -25,6 +39,8 @@ cc_library(
         "//src/rp2_common:__pkg__",
     ],
     deps = [
+        ":LIB_PICO_USE_STACK_GUARDS",
+        ":LIB_PICO_STACK_SIZE",
         "//src/rp2350/hardware_regs",
         "//src/rp2350/hardware_regs:platform_defs",
         "//src/rp2_common/pico_platform_compiler",
@@ -39,6 +55,8 @@ cc_library(
     includes = ["include"],
     target_compatible_with = ["//bazel/constraint:rp2350"],
     deps = [
+        ":LIB_PICO_USE_STACK_GUARDS",
+        ":LIB_PICO_STACK_SIZE",
         ":pico_platform_internal",
         "//src/common/pico_base_headers",
         "//src/rp2350/hardware_regs",

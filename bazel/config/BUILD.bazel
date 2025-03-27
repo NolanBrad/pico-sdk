@@ -294,3 +294,38 @@ label_flag(
     name = "PICO_FREERTOS_LIB",
     build_setting_default = "//bazel:empty_cc_lib",
 )
+
+bool_flag(
+    name = "PARAM_ASSERTIONS_ENABLE_ALL",
+    build_setting_default = True,
+)
+
+bool_flag(
+    name = "PICO_MALLOC_PANIC",
+    build_setting_default = True,
+)
+
+bool_flag(
+    name = "PICO_DEBUG_MALLOC",
+    build_setting_default = False,
+)
+
+int_flag(
+    name = "PICO_DEBUG_MALLOC_LOW_WATER",
+    build_setting_default = 0,
+)
+
+bool_flag(
+    name = "PICO_USE_STACK_GUARDS",
+    build_setting_default = True,
+)
+
+int_flag(
+    name = "PICO_STACK_SIZE",
+    build_setting_default = 0x800,
+)
+
+int_flag(
+    name = "PICO_HEAP_SIZE",
+    build_setting_default = 0x800,
+)
