@@ -329,3 +329,13 @@ int_flag(
     name = "PICO_HEAP_SIZE",
     build_setting_default = 0x800,
 )
+
+bool_flag(
+    name = "PICO_COMPILATION_OPT_OVERRIDE",
+    build_setting_default = False,
+)
+
+bool_flag(
+    name = "PICO_COMPILATION_DEBUG_OVERRIDE",
+    build_setting_default = False,
+)
