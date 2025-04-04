@@ -330,12 +330,20 @@ int_flag(
     build_setting_default = 0x800,
 )
 
+# PICO_BAZEL_CONFIG: PICO_COMPILATION_OPT_OVERRIDE, Override the default opt compilation mode arguments to none, type=bool, default=0, group=build
 bool_flag(
     name = "PICO_COMPILATION_OPT_OVERRIDE",
     build_setting_default = False,
 )
 
+# PICO_BAZEL_CONFIG: PICO_COMPILATION_DEBUG_OVERRIDE, Override the default dbg compilation mode arguments to none, type=bool, default=0, group=build
 bool_flag(
     name = "PICO_COMPILATION_DEBUG_OVERRIDE",
+    build_setting_default = False,
+)
+
+# PICO_BAZEL_CONFIG: PICO_COMPILATION_FASTBUILD_OVERRIDE, Override the default fastbuild compilation mode arguments to none, type=bool, default=0, group=build
+bool_flag(
+    name = "PICO_COMPILATION_FASTBUILD_OVERRIDE",
     build_setting_default = False,
 )

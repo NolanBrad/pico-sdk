@@ -118,6 +118,19 @@ cc_args(
     })
 )
 
+cc_args(
+    name = "fastbuild_args",
+    actions = [
+        "@rules_cc//cc/toolchains/actions:compile_actions",
+        "@rules_cc//cc/toolchains/actions:link_actions",
+    ],
+    args = select({
+        "//bazel/constraint:pico_compiliation_fastbuild_override": [],
+        # The conditions default are kept as nothing here, The bazel docs default are -gmlt -Wl,-S.
+        "//conditions:default": [],
+    })
+)
+
 configurable_toolchain_feature(
     name = "gc_sections",
     copts = [
@@ -150,27 +163,22 @@ configurable_toolchain_feature(
     linkopts = ["-Wl,-z,max-page-size=4096"],
 )
 
-# TODO: Make this shim unnecessary.
-cc_args_list(
-    name = "all_debug_args",
-    args = [":debug_args"],
-)
-
-cc_args_list(
-    name = "all_opt_args",
-    args = [":opt_args"],
-)
-
 cc_feature(
     name = "dbg",
-    args = [":all_debug_args"],
+    args = [":debug_args"],
     overrides = "@rules_cc//cc/toolchains/features:dbg",
 )
 
 cc_feature(
     name = "opt",
-    args = [":all_opt_args"],
+    args = [":opt_args"],
     overrides = "@rules_cc//cc/toolchains/features:opt",
+)
+
+cc_feature(
+    name = "fastbuild",
+    args = [":fastbuild_args"],
+    overrides = "@rules_cc//cc/toolchains/features:fastbuild",
 )
 
 HOSTS = (
@@ -211,6 +219,7 @@ _HOST_CPU_CONSTRAINTS = {
         "@rules_cc//cc/toolchains/args:experimental_replace_legacy_action_config_features",
         "@pico-sdk//bazel/toolchain:dbg",
         "@pico-sdk//bazel/toolchain:opt",
+        "@pico-sdk//bazel/toolchain:fastbuild",
         "@pico-sdk//bazel/toolchain:gc_sections",
         "@pico-sdk//bazel/toolchain:cxx_no_exceptions",
         "@pico-sdk//bazel/toolchain:cxx_no_rtti",
@@ -263,6 +272,7 @@ _HOST_CPU_CONSTRAINTS = {
         "@rules_cc//cc/toolchains/args:experimental_replace_legacy_action_config_features",
         "@pico-sdk//bazel/toolchain:dbg",
         "@pico-sdk//bazel/toolchain:opt",
+        "@pico-sdk//bazel/toolchain:fastbuild",
         "@pico-sdk//bazel/toolchain:gc_sections",
         "@pico-sdk//bazel/toolchain:cxx_no_exceptions",
         "@pico-sdk//bazel/toolchain:cxx_no_rtti",
