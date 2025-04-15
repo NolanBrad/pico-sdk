@@ -330,20 +330,20 @@ int_flag(
     build_setting_default = 0x800,
 )
 
-# PICO_BAZEL_CONFIG: PICO_COMPILATION_OPT_OVERRIDE, Override the default opt compilation mode arguments to none, type=bool, default=0, group=build
+# PICO_BAZEL_CONFIG: PICO_COMPILATION_NO_OPT_ARGS, Makes the opt compilation mode a no-op so custom optimization arguments can be injected via the --copt flag instead, type=bool, default=0, group=build
 bool_flag(
-    name = "PICO_COMPILATION_OPT_OVERRIDE",
+    name = "PICO_COMPILATION_NO_OPT_ARGS",
     build_setting_default = False,
 )
 
-# PICO_BAZEL_CONFIG: PICO_COMPILATION_DEBUG_OVERRIDE, Override the default dbg compilation mode arguments to none, type=bool, default=0, group=build
+# PICO_BAZEL_CONFIG: PICO_COMPILATION_NO_DEBUG_ARGS, Makes the debug compilation mode a no-op so custom debug arguments can be injected via the --copt flag instead, type=bool, default=0, group=build
 bool_flag(
-    name = "PICO_COMPILATION_DEBUG_OVERRIDE",
+    name = "PICO_COMPILATION_NO_DEBUG_ARGS",
     build_setting_default = False,
 )
 
-# PICO_BAZEL_CONFIG: PICO_COMPILATION_FASTBUILD_OVERRIDE, Override the default fastbuild compilation mode arguments to none, type=bool, default=0, group=build
+# PICO_BAZEL_CONFIG: PICO_COMPILATION_NO_FASTBUILD_ARGS, Makes the fastbuild compilation mode a no-op so custom fastbuild arguments can be injected via the --copt flag instead, type=bool, default=0, group=build
 bool_flag(
-    name = "PICO_COMPILATION_FASTBUILD_OVERRIDE",
+    name = "PICO_COMPILATION_NO_FASTBUILD_ARGS",
     build_setting_default = False,
 )

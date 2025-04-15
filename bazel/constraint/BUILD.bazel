@@ -260,16 +260,16 @@ label_flag_matches(
 )
 
 config_setting(
-    name = "pico_compiliation_opt_override",
-    flag_values = {"//bazel/config:PICO_COMPILATION_OPT_OVERRIDE": "True"},
+    name = "pico_compilation_no_opt_args_set",
+    flag_values = {"//bazel/config:PICO_COMPILATION_NO_OPT_ARGS": "True"},
 )
 
 config_setting(
-    name = "pico_compiliation_debug_override",
-    flag_values = {"//bazel/config:PICO_COMPILATION_DEBUG_OVERRIDE": "True"},
+    name = "pico_compilation_no_debug_args_set",
+    flag_values = {"//bazel/config:PICO_COMPILATION_NO_DEBUG_ARGS": "True"},
 )
 
 config_setting(
-    name = "pico_compiliation_fastbuild_override",
-    flag_values = {"//bazel/config:PICO_COMPILATION_FASTBUILD_OVERRIDE": "True"},
+    name = "pico_compilation_no_fastbuild_args_set",
+    flag_values = {"//bazel/config:PICO_COMPILATION_NO_FASBUILD_ARGS": "True"},
 )
