@@ -8,6 +8,7 @@
 #include "hardware/sync.h"
 #include "hardware/irq.h"
 #include "pico/runtime_init.h"
+#include <hardware/platform_defs.h>
 #ifdef __riscv
 #include "hardware/riscv.h"
 #else
@@ -328,6 +329,14 @@ void multicore_lockout_end_blocking(void) {
 
 bool multicore_lockout_victim_is_initialized(uint core_num) {
     return lockout_victim_initialized[core_num];
+}
+
+void multicore_lockout_victim_fake_init(uint core_num)
+{
+    if (core_num < NUM_CORES)
+    {
+        lockout_victim_initialized[core_num] = true;
+    }
 }
 
 #if NUM_DOORBELLS
