@@ -515,8 +515,6 @@ void multicore_lockout_end_blocking(void);
  */
 bool multicore_lockout_end_timeout_us(uint64_t timeout_us);
 
-void multicore_lockout_victim_fake_init(uint core_num);
-
 #ifdef __cplusplus
 }
 #endif
