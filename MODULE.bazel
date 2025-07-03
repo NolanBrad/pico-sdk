@@ -99,7 +99,7 @@ new_git_repository(
 new_git_repository(
     name = "btstack",
     build_file = "//src/rp2_common/pico_btstack:btstack.BUILD",
-    commit = "0cb9097530e00e8df21fb28f6d5e6faa3af6f95f",  # keep-in-sync-with-submodule: lib/btstack
+    commit = "b2352f9ad1d586bbfd3bab521addc0d9c336d151",  # keep-in-sync-with-submodule: lib/btstack
     remote = "https://github.com/NolanBrad/btstack.git",
 )
 
