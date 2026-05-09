@@ -8,3 +8,5 @@ common --verbose_failures
 # Silence warnings about old bazel_dep pins. Bazel 8 brings along newer ones,
 # but we can support Bazel 7 (for now).
 common --check_direct_dependencies=off
+
+common --enable_bzlmod
